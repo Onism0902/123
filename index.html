@@ -1,27 +1,146 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title></title>
-	<style>
-		body,ul{
-			margin: 0;
-			padding: 0;
-		}
-		ul{
-		  list-style: none;
-		}
-		a{
-			text-decoration: none;
-		}
-	</style>
+		<style>
+			body{
+				height:2000px;
+			}
+		</style>
 	</head>
 	<body>
-	<ul>
-		<li><a href="#">首页</a></li>
-	    <li><a href="#">公司介绍</a></li>
-	    <li><a href="#">产品简介</a></li>
-	    <li><a href="#">联系我们</a></li>
-		</ul>	
+		<div class="showTime">当前时间:</div>
+	<hr/>
+		<h1>四则运算</h1>
+		<from>
+			<input type="text" id="text1">
+			<select id="fuhao">
+				<option value="jia">+</option>
+				<option value="jian">-</option>
+				<option value="cheng">×</option>
+				<option value="chu">/</option>
+			</select>
+			<input type="text" id="text2">
+			<button id="dengyu">=</button>
+			<input type="text" id="text3">
+			<hr/>
+		</from>
+		<script>
+			//第一题
+			document.write('<h1>JS4</h1>');
+			document.write('<h1>第一题</h1>');
+			let str = "1.2.3.4.5.6";
+			let arr = [];
+			var reverse = function(str) {
+				for (let len = str.length - 1, i = len; i >= 0; i--) {
+					arr.push(str[i]);
+				}
+				return arr.join('');
+			}
+			document.write(reverse(str));
+			document.write('<hr>');
+
+			//第二题
+			document.write('<h1>第二题</h1>');
+
+			function ip(iip) {
+				var a = iip.split(".");
+				var b = iip.replace(a[a.length - 1], "*");
+				document.write(b + '<br>');
+			}
+			let zhangsan = new ip('192.168.1.10');
+			let lisi = new ip('1.2.3.4');
+			document.write('<hr>');
+			//第三题
+			document.write('<h1>第三题</h1>');
+			let today = new Date();
+			let mon = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
+			let week = '日一二三四五六';
+			document.write(
+				`${today.getFullYear()}年${mon[today.getMonth()]}月${today.getDate()}日,${today.getHours()}:${today.getMinutes()}:${today.getSeconds()},星期${week[today.getDay()]}`
+			);
+			document.write('<hr>');
+			//第四题
+			document.write('<h1>第四题</h1>');
+			document.write('<button id="button1">请输入一串字符</button><br/>');
+			const button1 = document.getElementById('button1');
+			button1.addEventListener('click', text);
+
+			function text() {
+				let text = prompt('请输入一串内容');
+				if (text.length >= 2 && text.length <= 10) {
+					alert('字符串长度符合要求');
+				} else {
+					alert('字符串长度不符合要求');
+				}
+			}
+			document.write('<hr>');
+			document.write('<h1>JS5</h1>');
+			document.write('<h1>第二题</h1>');
+			const p = document.querySelector('p');
+
+			function rnd(m, n) {
+				if (m > n) {
+					return '输入有误，第一个数不能大于第二个数';
+				}
+				return '四位随机数:' + (Math.floor(Math.random() * (n - m + 1)) + m);
+			}
+			document.write(rnd(1000, 9999));
+			document.write('<hr>');
+			const text1 = document.getElementById('text1');
+			const text2 = document.getElementById('text2');
+			const text3 = document.getElementById('text3');
+			const dengyu = document.getElementById('dengyu');
+			const fuhao = document.getElementById('fuhao');
+			dengyu.addEventListener('click', yunsuan);
+
+			function yunsuan() {
+				let num1 = Number(text1.value);
+				let num2 = Number(text2.value);
+				if (isNaN(num1) || isNaN(num2)) {
+					alert('请输入数值!!!');
+				} else if (num1 == '' || num2 == '') {
+					alert('啥也不输入我怎么运算？');
+				} else if (num2 == 0) {
+					alert('除数不能为0这点常识不知道？');
+				} else if (fuhao.value == "jia") {
+					text3.value = num1 + num2;
+				} else if (fuhao.value == "jian") {
+					text3.value = num1 - num2;
+				} else if (fuhao.value == "cheng") {
+					text3.value = num1 * num2;
+				} else if (fuhao.value == "chu") {
+					text3.value = num1 / num2;
+				}
+			}
+			var t = null;
+			  t = setTimeout(time, 1000); //開始运行
+			  function time() {
+			    clearTimeout(t); //清除定时器
+			    dt = new Date();
+			    var y = dt.getFullYear();
+			    var mt = dt.getMonth() + 1;
+			    var day = dt.getDate();
+			    var h = dt.getHours(); //获取时
+			    var m = dt.getMinutes(); //获取分
+			    var s = dt.getSeconds(); //获取秒
+			    document.querySelector(".showTime").innerHTML =
+			      "当前时间：" +
+			      y +
+			      "年" +
+			      mt +
+			      "月" +
+			      day +
+			      "日" +
+			      h +
+			      "时" +
+			      m +
+			      "分" +
+			      s +
+			      "秒";
+			    t = setTimeout(time, 1000); //设定定时器，循环运行
+			  }
+		</script>
 	</body>
 </html>
